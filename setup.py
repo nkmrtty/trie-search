@@ -14,7 +14,7 @@ except IOError:
 
 setup(
     name="trie-search",
-    version='0.1.0',
+    version='0.1.2',
     url='https://github.com/nkmrtty/trie-search',
     author='Tatsuya Nakamura',
     author_email='nkmrtty.com@google.com',
