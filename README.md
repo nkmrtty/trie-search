@@ -27,14 +27,25 @@ Create an instance, and load dictionary:
 
 ```python
 >>> import trie_search
->>> trie = trie_search.Trie(filepath='./example/triedict')
+>>> trie = trie_search.TrieSearch(filepath='./example/triedict')
+```
+
+If you have `list` or `tuple` object of patterns, you can create an instance as follows:
+
+```python
+>>> patterns = [u'pattern1', u'pattern2', u'pattern3']
+>>> trie = trie_search.TrieSearch(patterns)
 ```
 
 #### TrieSearch.search\_all\_patterns
 Search all patterns in an input text:
 
 ```python
->>> text = u'in computer science , a trie , also called digital tree and sometimes radix tree or prefix tree ( as they can be searched by prefixes ) , is a kind of search tree - an ordered tree data structure that is used to store a dynamic set or associative array where the keys are usually strings .'
+>>> text = (u'in computer science , a trie , also called digital tree and '
+...         u'sometimes radix tree or prefix tree ( as they can be searched '
+...         u'by prefixes ) , is a kind of search tree - an ordered tree data '
+...         u'structure that is used to store a dynamic set or associative array '
+...         u'where the keys are usually strings .')
 >>> for pattern, start_idx in trie.search_all_patterns(text):
 ...     print pattern, start_idx
 ...
@@ -61,8 +72,8 @@ usually 271
 strings 279 
 ```
 
-* The text is from the 1st sentence of [https://en.wikipedia.org/wiki/Trie](https://en.wikipedia.org/wiki/Trie).    For normalization, remove capitalizations and add single white space before/after symbols.
-* `search_all_patterns` returns an iterator. Each searched pattern is represented as a tuple `(pattern_string, pattern_start_index)`. The results are sorted by the start index. If you want to get the result as `list`, use `list` function as follow:
+* The text is the 1st sentence of [https://en.wikipedia.org/wiki/Trie](https://en.wikipedia.org/wiki/Trie). For normalization, remove capitalizations and add single white space before/after symbols.
+* `search_all_patterns` returns an iterator. Each searched pattern is represented as a tuple `(pattern_string, pattern_start_index)`. The results are sorted by the start index. If you want to get the result as a `list` object, use `list` function as follow:
 	
 	```python
 	>>> patterns = list(trie.search_all_patterns(text))
@@ -120,4 +131,4 @@ usually 272
 strings 280
 ```
 
-* `search_all_patterns` also returns an iterator. The result sorted by the length of patterns. In the above example, the result re-sorted by the start index.
+* `search_all_patterns` also returns an iterator. The result sorted by the length of patterns. In the above example, the result is re-sorted by the start index.
