@@ -14,12 +14,12 @@ except IOError:
 
 setup(
     name="trie-search",
-    version='0.1.2',
+    version='0.1.4',
     url='https://github.com/nkmrtty/trie-search',
     author='Tatsuya Nakamura',
-    author_email='nkmrtty.com@google.com',
+    author_email='nkmrtty.com@gmail.com',
     maintainer='Tatsuya Nakamura',
-    maintainer_email='nkmrtty.com@google.com',
+    maintainer_email='nkmrtty.com@gmail.com',
     description='Trie-search is a package for text pattern search using marisa-trie',
     long_description=readme,
     packages=find_packages(),

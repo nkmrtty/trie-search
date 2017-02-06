@@ -20,7 +20,9 @@ class RecordTrieSearch(RecordTrie, TrieSearch):
         all_patterns = self.search_all_patterns(text, splitter, min_weight)
         check_field = [0] * len(text)
         for pattern, start_idx, weight in sorted(
-                all_patterns, key=lambda x: x[1] + len(x[0])):
+                all_patterns,
+                key=lambda x: len(x[0].split(splitter)),
+                reverse=True):
             target_field = check_field[start_idx:start_idx + len(pattern)]
             check_sum = sum(target_field)
             if check_sum != len(target_field):
