@@ -29,7 +29,6 @@ class TrieSearch(Trie):
         for pattern, start_idx in sorted(
                 all_patterns, key=lambda x: len(x[0]), reverse=True):
             target_field = check_field[start_idx:start_idx + len(pattern)]
-            print pattern, target_field
             check_sum = sum(target_field)
             if check_sum != len(target_field):
                 for i in range(len(pattern)):
