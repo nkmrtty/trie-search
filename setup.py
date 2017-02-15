@@ -5,6 +5,9 @@ from __future__ import unicode_literals
 
 from setuptools import setup, find_packages
 
+def _requires_from_file(filename):
+    return open(filename).read().splitlines()
+
 try:
     with open('README.rst') as f:
         readme = f.read()
@@ -14,7 +17,7 @@ except IOError:
 
 setup(
     name="trie-search",
-    version='0.1.4',
+    version='0.1.5',
     url='https://github.com/nkmrtty/trie-search',
     author='Tatsuya Nakamura',
     author_email='nkmrtty.com@gmail.com',
@@ -23,7 +26,7 @@ setup(
     description='Trie-search is a package for text pattern search using marisa-trie',
     long_description=readme,
     packages=find_packages(),
-    install_requires=['marisa-trie'],
+    install_requires=_requires_from_file('requirements.txt'),
     license="MIT",
     classifiers=[
         'Intended Audience :: Science/Research',
