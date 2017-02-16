@@ -3,28 +3,28 @@ import re
 
 
 class TrieSearch(Trie):
-    def __init__(self, patterns=None, filepath=None):
+    def __init__(self, patterns=None, filepath=None, splitter=u' '):
         super(TrieSearch, self).__init__(patterns)
+        self.splitter = splitter
         if filepath:
             self.load(filepath)
 
-    def search_all_patterns(self, text, splitter=u' '):
+    def search_all_patterns(self, text):
         text_idx = 0
         for line in re.split(ur'[\n\r]', text):
-            if splitter:
-                words = re.split(splitter, line)
+            if self.splitter:
+                words = re.split(self.splitter, line)
             else:
                 words = line
             line_idx = 0
             for i, w in enumerate(words):
-                for pattern in self.__search_prefix_patterns(w, words[i + 1:],
-                                                             splitter):
+                for pattern in self.__search_prefix_patterns(w, words[i + 1:]):
                     yield pattern, text_idx + line_idx
-                line_idx += len(w) + len(splitter)
+                line_idx += len(w) + len(self.splitter)
             text_idx += line_idx
 
-    def search_longest_patterns(self, text, splitter=u' '):
-        all_patterns = self.search_all_patterns(text, splitter)
+    def search_longest_patterns(self, text):
+        all_patterns = self.search_all_patterns(text)
         check_field = [0] * len(text)
         for pattern, start_idx in sorted(
                 all_patterns, key=lambda x: len(x[0]), reverse=True):
@@ -35,13 +35,13 @@ class TrieSearch(Trie):
                     check_field[start_idx + i] = 1
                 yield pattern, start_idx
 
-    def __search_prefix_patterns(self, query, remaining_words, splitter=u' '):
+    def __search_prefix_patterns(self, query, remaining_words):
         if query in self:
             yield query
         # generate next query
         if len(remaining_words):
-            next_query = splitter.join((query, remaining_words[0]))
+            next_query = self.splitter.join((query, remaining_words[0]))
             if self.has_keys_with_prefix(next_query):
                 for ptn in self.__search_prefix_patterns(
-                        next_query, remaining_words[1:], splitter):
+                        next_query, remaining_words[1:]):
                     yield ptn
