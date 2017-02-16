@@ -5,8 +5,10 @@ from __future__ import unicode_literals
 
 from setuptools import setup, find_packages
 
+
 def _requires_from_file(filename):
     return open(filename).read().splitlines()
+
 
 try:
     with open('README.rst') as f:
@@ -14,10 +16,9 @@ try:
 except IOError:
     readme = ''
 
-
 setup(
     name="trie-search",
-    version='0.1.5',
+    version='0.2.0',
     url='https://github.com/nkmrtty/trie-search',
     author='Tatsuya Nakamura',
     author_email='nkmrtty.com@gmail.com',

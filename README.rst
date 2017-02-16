@@ -155,3 +155,12 @@ Search longest patterns in an input text:
 -  ``search_all_patterns`` also returns an iterator. The result sorted
    by the length of patterns. In the above example, the result is
    re-sorted by the start index.
+
+trie\_search.RecordTrieSearch
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+``trie_search.RecordTrieSearch`` is a sub class of
+``marisa_trie.RecordTrie``, which maps unicode keys to data tuples.
+
+The functions, ``search_all_patterns`` and ``search_longest_patterns``,
+are also implemented in ``trie_search.RecordTrieSearch``.
