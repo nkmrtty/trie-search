@@ -28,7 +28,7 @@ class RecordTrieSearch(RecordTrie, TrieSearch):
                 all_patterns, key=lambda x: len(x[0]), reverse=True):
             target_field = check_field[start_idx:start_idx + len(pattern)]
             check_sum = sum(target_field)
-            if check_sum != len(target_field):
+            if check_sum == 0:
                 for i in range(len(pattern)):
                     check_field[start_idx + i] = 1
                 yield pattern, start_idx, weight
