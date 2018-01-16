@@ -1,2 +1,2 @@
-from trie import TrieSearch
-from record_trie import RecordTrieSearch
+from .trie import TrieSearch
+from .record_trie import RecordTrieSearch

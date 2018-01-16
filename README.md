@@ -17,7 +17,7 @@ The following example simply creates trie dictionary of `marisa_trie.Trie` from 
 
 ```
 $ cd ./example
-$ curl https://dumps.wikimedia.org/jawiki/20170101/enwiki-20170101-all-titles-in-ns0.gz | gzcat | python create_triedict.py
+$ curl https://dumps.wikimedia.org/enwiki/latest/enwiki-latest-all-titles-in-ns0.gz | gzcat | python create_triedict.py
 ```
 
 **NOTICE** : This script will consume more than 2GB memory.
@@ -33,7 +33,7 @@ Create an instance, and load dictionary:
 If you have `list` or `tuple` object of patterns, you can create an instance as follows:
 
 ```python
->>> patterns = [u'pattern1', u'pattern2', u'pattern3']
+>>> patterns = ['pattern1', 'pattern2', 'pattern3']
 >>> trie = trie_search.TrieSearch(patterns)
 ```
 
@@ -41,11 +41,11 @@ If you have `list` or `tuple` object of patterns, you can create an instance as 
 Search all patterns in an input text:
 
 ```python
->>> text = (u'in computer science , a trie , also called digital tree and '
-...         u'sometimes radix tree or prefix tree ( as they can be searched '
-...         u'by prefixes ) , is a kind of search tree - an ordered tree data '
-...         u'structure that is used to store a dynamic set or associative array '
-...         u'where the keys are usually strings .')
+>>> text = ('in computer science , a trie , also called digital tree and '
+...         'sometimes radix tree or prefix tree ( as they can be searched '
+...         'by prefixes ) , is a kind of search tree - an ordered tree data '
+...         'structure that is used to store a dynamic set or associative array '
+...         'where the keys are usually strings .')
 >>> for pattern, start_idx in trie.search_all_patterns(text):
 ...     print pattern, start_idx
 ...
@@ -83,7 +83,7 @@ strings 279
 Search longest patterns in an input text:
 
 ```python
->>> for pattern, start_idx in trie.search_longest_patterns(text):
+>>> for pattern, start_idx in sorted(trie.search_longest_patterns(text), key=lambda x: x[1]):
 ...     print pattern, start_idx
 ...
 in 0
