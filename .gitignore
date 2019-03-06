@@ -1,6 +1,8 @@
 *.gz
 example/triedict
 *.ipynb
+.venv
+.vscode
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

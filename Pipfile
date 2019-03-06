@@ -1,0 +1,14 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+marisa-trie = "*"
+
+[dev-packages]
+"flake8" = "*"
+yapf = "*"
+
+[requires]
+python_version = "3.6"
