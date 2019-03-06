@@ -27,12 +27,12 @@ Wikipedia, and saves it to ``./example/triedict``.
 ::
 
     $ cd ./example
-    $ curl https://dumps.wikimedia.org/jawiki/20170101/enwiki-20170101-all-titles-in-ns0.gz | gzcat | python create_triedict.py
+    $ curl https://dumps.wikimedia.org/enwiki/latest/enwiki-latest-all-titles-in-ns0.gz | gzcat | python create_triedict.py
 
 **NOTICE** : This script will consume more than 2GB memory.
 
-trie\_search.TrieSearch
-~~~~~~~~~~~~~~~~~~~~~~~
+trie_search.TrieSearch
+~~~~~~~~~~~~~~~~~~~~~~
 
 Create an instance, and load dictionary:
 
@@ -46,21 +46,21 @@ instance as follows:
 
 .. code:: python
 
-    >>> patterns = [u'pattern1', u'pattern2', u'pattern3']
+    >>> patterns = ['pattern1', 'pattern2', 'pattern3']
     >>> trie = trie_search.TrieSearch(patterns)
 
-TrieSearch.search\_all\_patterns
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TrieSearch.search_all_patterns
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Search all patterns in an input text:
 
 .. code:: python
 
-    >>> text = (u'in computer science , a trie , also called digital tree and '
-    ...         u'sometimes radix tree or prefix tree ( as they can be searched '
-    ...         u'by prefixes ) , is a kind of search tree - an ordered tree data '
-    ...         u'structure that is used to store a dynamic set or associative array '
-    ...         u'where the keys are usually strings .')
+    >>> text = ('in computer science , a trie , also called digital tree and '
+    ...         'sometimes radix tree or prefix tree ( as they can be searched '
+    ...         'by prefixes ) , is a kind of search tree - an ordered tree data '
+    ...         'structure that is used to store a dynamic set or associative array '
+    ...         'where the keys are usually strings .')
     >>> for pattern, start_idx in trie.search_all_patterns(text):
     ...     print pattern, start_idx
     ...
@@ -98,14 +98,14 @@ Search all patterns in an input text:
 
        >>> patterns = list(trie.search_all_patterns(text))
 
-TrieSearch.search\_longest\_patterns
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TrieSearch.search_longest_patterns
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Search longest patterns in an input text:
 
 .. code:: python
 
-    >>> for pattern, start_idx in trie.search_longest_patterns(text):
+    >>> for pattern, start_idx in sorted(trie.search_longest_patterns(text), key=lambda x: x[1]):
     ...     print pattern, start_idx
     ...
     in 0
@@ -156,8 +156,8 @@ Search longest patterns in an input text:
    by the length of patterns. In the above example, the result is
    re-sorted by the start index.
 
-trie\_search.RecordTrieSearch
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+trie_search.RecordTrieSearch
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 ``trie_search.RecordTrieSearch`` is a sub class of
 ``marisa_trie.RecordTrie``, which maps unicode keys to data tuples.

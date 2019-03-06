@@ -3,7 +3,7 @@ import re
 
 
 class TrieSearch(Trie):
-    def __init__(self, patterns=None, filepath=None, splitter=u' '):
+    def __init__(self, patterns=None, filepath=None, splitter=' '):
         super(TrieSearch, self).__init__(patterns)
         self.splitter = splitter
         if filepath:
@@ -11,7 +11,7 @@ class TrieSearch(Trie):
 
     def search_all_patterns(self, text):
         text_idx = 0
-        for line in re.split(ur'[\n\r]', text):
+        for line in re.split(r'[\n\r]', text):
             if self.splitter:
                 words = re.split(self.splitter, line)
             else:

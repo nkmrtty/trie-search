@@ -7,7 +7,7 @@ class RecordTrieSearch(RecordTrie, TrieSearch):
                  record_format,
                  records=None,
                  filepath=None,
-                 splitter=u' '):
+                 splitter=' '):
         super(RecordTrieSearch, self).__init__(record_format, records)
         self.splitter = splitter
         if filepath:
