@@ -41,7 +41,14 @@ class TrieSearch(Trie):
         # generate next query
         if len(remaining_words):
             next_query = self.splitter.join((query, remaining_words[0]))
-            if self.has_keys_with_prefix(next_query):
-                for ptn in self.__search_prefix_patterns(
-                        next_query, remaining_words[1:]):
-                    yield ptn
+            gen = self.iterkeys(prefix=next_query)
+            try:
+                _ = next(gen)
+                yield from self.__search_prefix_patterns(
+                    next_query, remaining_words[1:])
+            except StopIteration:
+                # there is no keys with the given prefix
+                pass
+            # if self.has_keys_with_prefix(next_query):
+            #     for ptn in self.__search_prefix_patterns(
+            #             next_query, remaining_words[1:]):
