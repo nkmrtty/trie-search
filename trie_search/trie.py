@@ -13,14 +13,14 @@ class TrieSearch(Trie):
         text_idx = 0
         for line in re.split(r'[\n\r]', text):
             if self.splitter:
-                words = re.split(self.splitter, line)
+                words = re.split(f'({self.splitter})', line)
             else:
                 words = line
             line_idx = 0
             for i, w in enumerate(words):
                 for pattern in self.__search_prefix_patterns(w, words[i + 1:]):
                     yield pattern, text_idx + line_idx
-                line_idx += len(w) + len(self.splitter)
+                line_idx += len(w)
             text_idx += line_idx
 
     def search_longest_patterns(self, text):
@@ -40,7 +40,7 @@ class TrieSearch(Trie):
             yield query
         # generate next query
         if len(remaining_words):
-            next_query = self.splitter.join((query, remaining_words[0]))
+            next_query = ''.join((query, remaining_words[0]))
             gen = self.iterkeys(prefix=next_query)
             try:
                 _ = next(gen)
