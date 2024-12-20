@@ -49,6 +49,6 @@ class TrieSearch(Trie):
             except StopIteration:
                 # there is no keys with the given prefix
                 pass
-            # if self.has_keys_with_prefix(next_query):
+            if any(self.iterkeys(next_query)):
             #     for ptn in self.__search_prefix_patterns(
             #             next_query, remaining_words[1:]):
